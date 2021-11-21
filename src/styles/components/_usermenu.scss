@@ -1,0 +1,17 @@
+#user {
+  &__dropdown {
+    & img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+    }
+
+    & .name {
+      max-width: 100px;
+      padding: 0 4px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
