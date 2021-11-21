@@ -1,6 +1,7 @@
 // libs
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FacebookFilled, GoogleCircleFilled } from '@ant-design/icons';
 // other
 import Svg4 from '../../assets/Take Away-pana.svg';
 
@@ -77,16 +78,17 @@ const Login = () => {
               </div>
               <div className="login__another mt-16">
                 <a href="www.google.com" className="btn btn-facebook">
+                  <FacebookFilled className="social-icon facebook-icon" />
                   Facebook
                 </a>
                 <a href="www.google.com" className="btn btn-google">
+                  <GoogleCircleFilled className="social-icon google-icon" />
                   Google
                 </a>
               </div>
               <div className="login__register mt-16">
                 <span>Bạn mới đến Unimi? </span>
-                <Link to="/register" className="login__register-text">
-                  {' '}
+                <Link to="/account/register" className="login__register-text">
                   Đăng ký
                 </Link>
               </div>

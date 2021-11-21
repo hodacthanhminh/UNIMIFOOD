@@ -1,5 +1,6 @@
 // libs
 import React from 'react';
+import { FacebookFilled, InstagramFilled } from '@ant-design/icons';
 
 const Footer = () => (
   <div className="footer">
@@ -41,7 +42,7 @@ const Footer = () => (
                 rel="noreferrer"
               >
                 <span className="social-icon facebook-icon">
-                  <i className="fab fa-facebook-f" />
+                  <FacebookFilled />
                 </span>
               </a>
             </li>
@@ -53,7 +54,7 @@ const Footer = () => (
                 rel="noreferrer"
               >
                 <span className="social-icon instagram-icon">
-                  <i className="fab fa-instagram" />
+                  <InstagramFilled />
                 </span>
               </a>
             </li>

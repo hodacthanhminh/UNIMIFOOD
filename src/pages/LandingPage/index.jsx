@@ -11,7 +11,7 @@ const Infos = [
     heading: 'Unimi Food tới rồi đây!',
     caption: '',
     paragraph: 'Còn chần chờ gì mà không đặt Unimi ngay?',
-    link: '/login',
+    link: '/account/login',
     button: 'Cùng khám phá',
     img: Svg7,
   },
