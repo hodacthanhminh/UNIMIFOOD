@@ -1,20 +1,9 @@
 // libs
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-// import { connect } from 'react-redux';
 // components
 import UserMenu from '../UserMenu';
-// const mapStateToProps = (state) => ({
-//   isAuthenticated: state.auth.isAuthenticated,
-// });
 
-// const Login = () => (
-//   <Link to="/login" className="btn btn-primary">
-//     Đăng nhập
-//   </Link>
-// );
-
-// const Header = ({ isAuthenticated }) => {
 const Header = () => (
   <div className="header">
     <div className="container">
@@ -37,7 +26,6 @@ const Header = () => (
           </NavLink>
           <div className="menu__auth">
             <UserMenu />
-            {/* <Login /> */}
           </div>
         </div>
       </div>
@@ -46,4 +34,3 @@ const Header = () => (
 );
 
 export default Header;
-// export default connect(mapStateToProps, null)(Header);
