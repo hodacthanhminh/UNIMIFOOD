@@ -1,7 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 // style
 import './styles/main.scss';
+import 'antd/dist/antd.css';
 // components
 import Layout from './HOC/Layout';
 import routes from './Config/routes';
