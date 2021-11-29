@@ -1,33 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Ava from '../../assets/WOWMINH.png';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Logout } from '../../actions/auth';
 
 // const UserMenu = ({ logout, user, isLoading }) => {
-const UserMenu = () => {
+const UserMenu = ({ LogoutAction, user, isLoading }) => {
   const [show, setShow] = useState(null);
   const handleShow = () => {
-    console.log('>>Change show');
     setShow(!show);
   };
+  const [userData, setUserData] = useState(null);
 
-  const handleLogout = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
+  useEffect(() => {
+    setUserData(user);
+  }, [user]);
+  const handleLogout = () => {
+    LogoutAction();
   };
+  if (isLoading || userData === null) {
+    return <> </>;
+  }
   return (
     <div className="user__account">
       <div
         className="dropdown"
         onClick={handleShow}
-        onKeyDown={handleShow}
         role="menuitem"
         tabIndex="-1"
       >
         <div className="dropdown-toggle" id="user__dropdown">
           <div className="image">
-            <img src={Ava} alt="avatar" />
+            <img
+              src={`${process.env.REACT_APP_URL}${userData.avatar}`}
+              alt="avatar"
+            />
           </div>
-          <span className="name">Thanh Minh</span>
+          <span className="name">{userData?.username}</span>
         </div>
         <div className={`dropdown-menu ${show ? 'show' : ''}`}>
           <Link to="/user/history">
@@ -39,7 +48,6 @@ const UserMenu = () => {
           <div
             className="dropdown-item"
             onClick={handleLogout}
-            onKeyDown={handleLogout}
             role="menuitem"
             tabIndex="-1"
           >
@@ -51,4 +59,29 @@ const UserMenu = () => {
   );
 };
 
-export default UserMenu;
+UserMenu.propTypes = {
+  LogoutAction: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
+  isLoading: PropTypes.bool.isRequired,
+};
+
+UserMenu.defaultProps = {
+  user: {
+    avatar: null,
+    username: 'anonymous',
+  },
+};
+
+const mapDispatchToProps = {
+  LogoutAction: Logout,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  isLoading: state.auth.isLoadingAccount,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
