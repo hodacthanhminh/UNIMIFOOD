@@ -1,27 +1,23 @@
 // libs
 import React, { useState } from 'react';
-import {
-  Input,
-  Checkbox,
-  Space,
-  Button,
-  Divider,
-  Select,
-} from 'antd';
+import PropTypes from 'prop-types';
+import { Input, Checkbox, Space, Button, Divider } from 'antd';
 import {
   FacebookFilled,
   GoogleCircleFilled,
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+// redux
+import { Login } from '../../../../actions/auth';
 
-const LoginForm = () => {
+const LoginForm = ({ loginAction, isAuth }) => {
   const [form, setForm] = useState({
-    username: null,
+    email: null,
     password: null,
-    role: null,
   });
 
-  const { Option } = Select;
+  if (isAuth) return <Redirect to="/" />;
 
   const handleOnChange = (e) => {
     setForm({
@@ -29,11 +25,8 @@ const LoginForm = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const handleOnChangeRole = (respone) => {
-    setForm({
-      ...form,
-      role: respone.value,
-    });
+  const handleOnSubmit = () => {
+    loginAction(form);
   };
 
   return (
@@ -42,24 +35,11 @@ const LoginForm = () => {
         direction="vertical"
         className="login-form-wrapper-inner"
       >
-        <div className="login-form-heading">
-          <h3 className="login-form-title">Đăng nhập </h3>
-          <Select
-            className="login-form-select "
-            labelInValue
-            defaultValue={{ value: 'customer' }}
-            style={{ width: 120 }}
-            onChange={handleOnChangeRole}
-          >
-            <Option value="customer">Customer</Option>
-            <Option value="store">Store</Option>
-            <Option value="shipper"> Shipper</Option>
-          </Select>
-        </div>
+        <h3 className="login-form-title">Đăng nhập </h3>
         <Input
           className="login-form-input"
           placeholder="Email / tên đăng nhập"
-          name="username"
+          name="email"
           onChange={handleOnChange}
         />
         <Input.Password
@@ -70,19 +50,17 @@ const LoginForm = () => {
         />
         <div className="login-form-functional">
           <Checkbox>Nhớ Tôi</Checkbox>
-          <Link
-            className="login-form-forgot"
-            to="/account/forgot"
-          >
+          <Link className="login-form-forgot" to="/account/forgot">
             Quên mật khẩu
           </Link>
         </div>
-        <Button className="login-form-submit">
+        <Button
+          className="login-form-submit"
+          onClick={handleOnSubmit}
+        >
           Đăng nhập
         </Button>
-        <Divider className="login-form-divider">
-          HOẶC
-        </Divider>
+        <Divider className="login-form-divider">HOẶC</Divider>
         <div className="login-form-functional">
           <Button
             className="login-form-facebook"
@@ -112,4 +90,23 @@ const LoginForm = () => {
     </div>
   );
 };
-export default LoginForm;
+
+LoginForm.propTypes = {
+  loginAction: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool,
+};
+
+LoginForm.defaultProps = { isAuth: null };
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  loginAction: Login,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LoginForm);

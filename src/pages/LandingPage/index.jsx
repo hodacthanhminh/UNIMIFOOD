@@ -1,4 +1,5 @@
 import React from 'react';
+import { Carousel } from 'antd';
 import ContentBlock from '../../components/ContentBlock';
 import Svg7 from '../../assets/Online Groceries-pana.svg';
 import Svg8 from '../../assets/Online Groceries-amico.svg';
@@ -20,7 +21,8 @@ const Infos = [
     position: 'left',
     heading: 'Giảm giá khủng',
     caption: '',
-    paragraph: 'Nhiều ưu đãi mỗi ngày đang chờ đợi bạn tại Unimi đấy!',
+    paragraph:
+      'Nhiều ưu đãi mỗi ngày đang chờ đợi bạn tại Unimi đấy!',
     link: '/',
     button: 'Đặt hàng ngay',
     img: Svg9,
@@ -38,9 +40,11 @@ const Infos = [
 ];
 const LandingPage = () => (
   <div className="landing-page-wrapper">
-    {Infos.map((info) => (
-      <ContentBlock content={info} key={info.key} />
-    ))}
+    <Carousel autoplay>
+      {Infos.map((info) => (
+        <ContentBlock content={info} key={info.key} />
+      ))}
+    </Carousel>
   </div>
 );
 

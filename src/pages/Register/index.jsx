@@ -5,7 +5,7 @@ import RegisterForm from './mains/RegisterForm';
 // other
 import Svg4 from '../../assets/Take Away-pana.svg';
 
-const Login = () => (
+const Register = () => (
   <div className="login-wrapper">
     <div className="login-wrapper-inner container">
       <div className="login-image-wrapper">
@@ -16,4 +16,4 @@ const Login = () => (
   </div>
 );
 
-export default Login;
+export default Register;

@@ -1,5 +1,8 @@
 // libs
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Input,
   Checkbox,
@@ -12,17 +15,28 @@ import {
   FacebookFilled,
   GoogleCircleFilled,
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+// redux
+import { Register } from '../../../../actions/auth';
 
-const RegisterForm = () => {
+const RegisterForm = ({ RegisterAction, isAuth }) => {
   const [form, setForm] = useState({
-    username: null,
+    email: null,
     password: null,
-    role: null,
+    repassword: null,
+    account_role: 'customer',
   });
-
   const { Option } = Select;
 
+  if (isAuth) {
+    <Redirect to="/account/login" />;
+  }
+
+  const handleOnSubmit = () => {
+    const { repassword, ...params } = form;
+    if (params.password === repassword) {
+      RegisterAction(params);
+    }
+  };
   const handleOnChange = (e) => {
     setForm({
       ...form,
@@ -32,7 +46,7 @@ const RegisterForm = () => {
   const handleOnChangeRole = (respone) => {
     setForm({
       ...form,
-      role: respone.value,
+      account_role: respone.value,
     });
   };
 
@@ -59,7 +73,7 @@ const RegisterForm = () => {
         <Input
           className="login-form-input"
           placeholder="Email / tên đăng nhập"
-          name="username"
+          name="email"
           onChange={handleOnChange}
         />
         <Input.Password
@@ -71,24 +85,22 @@ const RegisterForm = () => {
         <Input.Password
           className="login-form-input"
           placeholder="Nhập mật khẩu"
-          name="password"
+          name="repassword"
           onChange={handleOnChange}
         />
         <div className="login-form-functional">
           <Checkbox>Nhớ Tôi</Checkbox>
-          <Link
-            className="login-form-forgot"
-            to="/account/forgot"
-          >
+          <Link className="login-form-forgot" to="/account/forgot">
             Quên mật khẩu
           </Link>
         </div>
-        <Button className="login-form-submit">
+        <Button
+          className="login-form-submit"
+          onClick={handleOnSubmit}
+        >
           Đăng ký
         </Button>
-        <Divider className="login-form-divider">
-          HOẶC
-        </Divider>
+        <Divider className="login-form-divider">HOẶC</Divider>
         <div className="login-form-functional">
           <Button
             className="login-form-facebook"
@@ -106,10 +118,7 @@ const RegisterForm = () => {
         <div className="login-form-register">
           <span> Bạn đã có tài khoản Unimi? </span>
           <span>
-            <Link
-              to="/account/login"
-              className="form-change-label"
-            >
+            <Link to="/account/login" className="form-change-label">
               Đăng nhập
             </Link>
           </span>
@@ -118,4 +127,23 @@ const RegisterForm = () => {
     </div>
   );
 };
-export default RegisterForm;
+
+RegisterForm.propTypes = {
+  RegisterAction: PropTypes.func.isRequired,
+  isAuth: PropTypes.bool,
+};
+
+RegisterForm.defaultProps = { isAuth: null };
+
+const mapStateToProps = (state) => ({
+  isAuth: state.auth.isAuthenticated,
+});
+
+const mapDispatchToProps = {
+  RegisterAction: Register,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RegisterForm);

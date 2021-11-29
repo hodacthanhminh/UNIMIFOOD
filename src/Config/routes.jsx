@@ -3,6 +3,7 @@
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import LandingPage from '../pages/LandingPage';
+import Home from '../pages/Home';
 
 const routes = [
   {
@@ -14,8 +15,12 @@ const routes = [
     component: Register,
   },
   {
-    path: '/',
+    path: '/about',
     component: LandingPage,
+  },
+  {
+    path: '/',
+    component: Home,
   },
 ];
 
