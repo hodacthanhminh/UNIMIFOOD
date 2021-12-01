@@ -12,3 +12,12 @@ export const ACCOUNT_AUTHENTICATION_SUCCESS =
   'account/authentication_succes';
 export const ACCOUNT_REGISTERED_FAILED = 'account/register_fail';
 export const ACCOUNT_REGISTERED_SUCCESS = 'account/register_success';
+// store_home
+export const STORE_LOAD = 'store/load';
+export const STORE_LOAD_SUCCESS = 'store/load_success';
+export const STORE_LOAD_FAILED = 'store/load_fail';
+// store_view_by_category
+export const STORE_VIEW_LOAD = 'store_view/load_store';
+export const STORE_VIEW_LOAD_SUCCESS =
+  'store_view/load_store_success';
+export const STORE_VIEW_LOAD_FAILED = 'store_view/load_store_fail';
