@@ -35,7 +35,7 @@ const Home = ({ storeData, loadStoreData, showStore }) => {
   useEffect(() => {
     if (storeData.length > 0) {
       const showStoreByCategory = storeData.filter((store) => {
-        const storeCategory = store.store_category;
+        const storeCategory = store.store_category.slug;
         return category.includes(storeCategory) ? store : null;
       });
       showStore(showStoreByCategory);

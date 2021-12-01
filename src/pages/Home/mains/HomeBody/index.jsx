@@ -38,7 +38,7 @@ const HomeBody = ({ storeViewList, isLoading }) => {
                     storeImage={store.logo}
                     storeAltImage={`${store.name}-picture`}
                     storeId={store.id}
-                    storeCategory={store.store_category}
+                    storeCategory={store.store_category.slug}
                   />
                 ))}
           </div>

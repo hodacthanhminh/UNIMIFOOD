@@ -19,7 +19,7 @@ const StoreCard = ({
       <div className="store-card-image-wrapper">
         <img
           className="store-card-image"
-          src={storeImage}
+          src={`${process.env.REACT_APP_URL + storeImage}`}
           alt={storeAltImage}
         />
       </div>

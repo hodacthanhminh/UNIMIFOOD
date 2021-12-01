@@ -27,7 +27,7 @@ export const tagsValue = {
     label: 'Trái cây',
     value: 'green',
   },
-  default: {
+  'cua-hang': {
     label: 'Cửa hàng',
     value: 'default',
   },
@@ -41,5 +41,5 @@ export const tags = [
   'bua-trua',
   'bua-sang',
   'ca-phe',
-  'default',
+  'cua-hang',
 ];
