@@ -32,7 +32,7 @@ const UserMenu = ({ LogoutAction, user, isLoading }) => {
         <div className="dropdown-toggle" id="user__dropdown">
           <div className="image">
             <img
-              src={`${process.env.REACT_APP_URL}${userData.avatar}`}
+              src={`${process.env.REACT_APP_URL + userData.avatar}`}
               alt="avatar"
             />
           </div>

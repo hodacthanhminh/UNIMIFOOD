@@ -1,0 +1,94 @@
+.store-card-wrapper {
+  width: 100%;
+  background-color: $white;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 5px $hover-color;
+  }
+
+  & .store-card-wrapper-inner {
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    & .store-card-image-wrapper {
+      & .store-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    & .store-card-content {
+      padding: 8px;
+      border: 1px solid $gray;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+
+      & .store-card-divider {
+        background-color: $white-dark;
+      }
+
+      & .store-card-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin: 0;
+        color: $gray-darkest;
+      }
+
+      & .store-card-address {
+        text-align: start;
+        width: 90%;
+        color: $gray-darker;
+        font-size: 0.7rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 979px) {
+  .store-card-wrapper {
+    & .store-card-wrapper-inner {
+      & .store-card-divider {
+        margin: 8px 0;
+      }
+
+      & .store-card-image-wrapper {
+        height: 120px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 979px) {
+  .store-card-wrapper {
+    & .store-card-wrapper-inner {
+      & .store-card-divider {
+        margin: 8px 0;
+      }
+
+      & .store-card-image-wrapper {
+        height: 120px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .store-card-wrapper {
+    & .store-card-wrapper-inner {
+      & .store-card-divider {
+        margin: 8px 0;
+      }
+
+      & .store-card-image-wrapper {
+        height: 100px;
+      }
+    }
+  }
+}
