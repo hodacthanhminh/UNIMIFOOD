@@ -30,10 +30,12 @@ const auth = (state = initialState, action) => {
       };
     case actionType.ACCOUNT_LOAD_PROFILE_SUCCESS:
     case actionType.ACCOUNT_UPDATE_SUCCESS:
+      // eslint-disable-next-line no-case-declarations
+      const newUser = { ...state.user, ...payload.user };
       return {
         ...state,
         isLoadingAccount: false,
-        user: payload.user,
+        user: newUser,
       };
     case actionType.ACCOUNT_LOGIN_FAIL:
     case actionType.ACCOUNT_LOGOUT:

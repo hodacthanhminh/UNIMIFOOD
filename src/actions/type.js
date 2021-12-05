@@ -12,16 +12,25 @@ export const ACCOUNT_AUTHENTICATION_SUCCESS =
   'account/authentication_succes';
 export const ACCOUNT_REGISTERED_FAILED = 'account/register_fail';
 export const ACCOUNT_REGISTERED_SUCCESS = 'account/register_success';
+export const ACCOUNT_UPDATE_FAILED =
+  'account_update/account_update_fail';
+export const ACCOUNT_UPDATE_SUCCESS =
+  'account_update/account_update_success';
+
 // store_home
 export const STORE_LOAD = 'store/load';
 export const STORE_LOAD_SUCCESS = 'store/load_success';
 export const STORE_LOAD_FAILED = 'store/load_fail';
+
 // store_view_by_category
 export const STORE_VIEW_LOAD = 'store_view/load_store';
 export const STORE_VIEW_LOAD_SUCCESS =
   'store_view/load_store_success';
 export const STORE_VIEW_LOAD_FAILED = 'store_view/load_store_fail';
-export const ACCOUNT_UPDATE_FAILED =
-  'account_update/account_update_fail';
-export const ACCOUNT_UPDATE_SUCCESS =
-  'account_update/account_update_success';
+
+// home store
+export const STORE_ID_LOAD = 'store_id/load_store';
+export const STORE_ID_LOAD_SUCCESS = 'store_id/load_store_success';
+export const STORE_ID_LOAD_FAILED = 'store_id/load_store_fail';
+export const STORE_ID_ADD_CART = 'store_id/add_cart';
+export const STORE_ID_REMOVE_CART = 'store_id/remove_cart';
