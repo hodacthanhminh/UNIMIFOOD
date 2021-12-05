@@ -1,0 +1,27 @@
+.store-menu {
+  &-wrapper {
+    grid-area: menu;
+    border-radius: 3px;
+    border: 1px solid $white-dark;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    background-color: $white;
+
+    &-inner {
+      display: grid;
+      grid-template-rows: auto auto;
+      grid-row-gap: 24px;
+    }
+  }
+
+  &-heading {
+    color: $primary-color;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  &-list-wrapper {
+    display: grid;
+    grid-row-gap: 12px;
+  }
+}
