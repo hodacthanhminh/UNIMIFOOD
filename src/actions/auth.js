@@ -67,3 +67,29 @@ export const Register = (formData) => async (dispatch) => {
     }
   }
 };
+
+export const UpdateAccount = (formData, id) => async (dispatch) => {
+  try {
+    console.log(formData, id);
+    const res = await accountApi.accountUpdate(formData, id);
+    if (res.status === 'Error') {
+      console.log(res.data);
+      dispatch({
+        type: type.ACCOUNT_UPDATE_FAILED,
+      });
+    } else {
+      dispatch({
+        type: type.ACCOUNT_UPDATE_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      dispatch({
+        type: type.ACCOUNT_UPDATE_FAILED,
+      });
+    }
+  }
+};

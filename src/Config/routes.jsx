@@ -5,6 +5,7 @@ import Register from '../pages/Register';
 import LandingPage from '../pages/LandingPage';
 import Home from '../pages/Home';
 import Store from '../pages/Store';
+import UserProfile from '../pages/UserProfile';
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
   {
     path: '/store/:id',
     component: Store,
+  },
+  {
+    path: '/account/profile',
+    component: UserProfile,
   },
 ];
 
