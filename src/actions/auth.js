@@ -50,7 +50,6 @@ export const Register = (formData) => async (dispatch) => {
   try {
     const res = await accountApi.accountRegister(formData);
     if (res.status === 'Error') {
-      console.log(res.data);
       dispatch({
         type: type.ACCOUNT_REGISTERED_FAILED,
       });
@@ -73,7 +72,6 @@ export const UpdateAccount = (formData, id) => async (dispatch) => {
     console.log(formData, id);
     const res = await accountApi.accountUpdate(formData, id);
     if (res.status === 'Error') {
-      console.log(res.data);
       dispatch({
         type: type.ACCOUNT_UPDATE_FAILED,
       });

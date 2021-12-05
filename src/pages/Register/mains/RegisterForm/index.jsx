@@ -1,7 +1,7 @@
 // libs
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Input,
@@ -26,10 +26,11 @@ const RegisterForm = ({ RegisterAction, isAuth }) => {
     account_role: 'customer',
   });
   const { Option } = Select;
+  const history = useHistory();
 
-  if (isAuth) {
-    <Redirect to="/account/login" />;
-  }
+  useEffect(() => {
+    if (isAuth) history.push('/');
+  }, [isAuth]);
 
   const handleOnSubmit = () => {
     const { repassword, ...params } = form;

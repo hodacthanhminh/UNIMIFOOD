@@ -1,12 +1,12 @@
 // libs
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Input, Checkbox, Space, Button, Divider } from 'antd';
 import {
   FacebookFilled,
   GoogleCircleFilled,
 } from '@ant-design/icons';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 // redux
 import { Login } from '../../../../actions/auth';
@@ -17,7 +17,11 @@ const LoginForm = ({ loginAction, isAuth }) => {
     password: null,
   });
 
-  if (isAuth) return <Redirect to="/" />;
+  const history = useHistory();
+
+  useEffect(() => {
+    if (isAuth) history.goBack();
+  }, [isAuth]);
 
   const handleOnChange = (e) => {
     setForm({
