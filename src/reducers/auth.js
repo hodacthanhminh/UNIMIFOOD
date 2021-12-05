@@ -29,6 +29,7 @@ const auth = (state = initialState, action) => {
         isLoadingAccount: true,
       };
     case actionType.ACCOUNT_LOAD_PROFILE_SUCCESS:
+    case actionType.ACCOUNT_UPDATE_SUCCESS:
       return {
         ...state,
         isLoadingAccount: false,
@@ -45,6 +46,8 @@ const auth = (state = initialState, action) => {
         authTokens: null,
         user: {},
       };
+    case actionType.ACCOUNT_UPDATE_FAILED:
+      return state;
     default:
       return state;
   }

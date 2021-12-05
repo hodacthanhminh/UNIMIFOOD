@@ -129,6 +129,8 @@ input {
 }
 
 .main-wrapper {
-  margin-top: 100px;
   min-height: 500px;
+  max-width: 1260px;
+  width: 100%;
+  margin: 100px auto 0;
 }

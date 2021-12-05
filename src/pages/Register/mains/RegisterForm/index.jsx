@@ -66,7 +66,7 @@ const RegisterForm = ({ RegisterAction, isAuth }) => {
             onChange={handleOnChangeRole}
           >
             <Option value="customer">Customer</Option>
-            <Option value="store">Store</Option>
+            <Option value="employee">Store</Option>
             <Option value="shipper"> Shipper</Option>
           </Select>
         </div>

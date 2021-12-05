@@ -21,3 +21,7 @@ export const STORE_VIEW_LOAD = 'store_view/load_store';
 export const STORE_VIEW_LOAD_SUCCESS =
   'store_view/load_store_success';
 export const STORE_VIEW_LOAD_FAILED = 'store_view/load_store_fail';
+export const ACCOUNT_UPDATE_FAILED =
+  'account_update/account_update_fail';
+export const ACCOUNT_UPDATE_SUCCESS =
+  'account_update/account_update_success';

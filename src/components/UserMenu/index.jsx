@@ -36,13 +36,13 @@ const UserMenu = ({ LogoutAction, user, isLoading }) => {
               alt="avatar"
             />
           </div>
-          <span className="name">{userData?.username}</span>
+          <span className="name">{userData?.first_name}</span>
         </div>
         <div className={`dropdown-menu ${show ? 'show' : ''}`}>
           <Link to="/user/history">
             <div className="dropdown-item">Lịch sử đơn hàng</div>
           </Link>
-          <Link to="/user/profile">
+          <Link to="/account/profile">
             <div className="dropdown-item">Thông tin cá nhân</div>
           </Link>
           <div
@@ -62,7 +62,7 @@ const UserMenu = ({ LogoutAction, user, isLoading }) => {
 UserMenu.propTypes = {
   LogoutAction: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    username: PropTypes.string,
+    first_name: PropTypes.string,
     avatar: PropTypes.string,
   }),
   isLoading: PropTypes.bool.isRequired,
@@ -71,7 +71,7 @@ UserMenu.propTypes = {
 UserMenu.defaultProps = {
   user: {
     avatar: null,
-    username: 'anonymous',
+    first_name: 'anonymous',
   },
 };
 

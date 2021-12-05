@@ -13,5 +13,9 @@ const accountApi = {
     const url = '/account/register';
     return axiosClient.post(url, params);
   },
+  accountUpdate: (params, id) => {
+    const url = `/account/${id}`;
+    return axiosClient.put(url, params);
+  },
 };
 export default accountApi;
