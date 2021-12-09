@@ -6,6 +6,7 @@ import LandingPage from '../pages/LandingPage';
 import Home from '../pages/Home';
 import Store from '../pages/Store';
 import UserProfile from '../pages/UserProfile';
+import EmployeeWorkspace from '../pages/EmployeeWorkspace';
 
 const routes = [
   {
@@ -31,6 +32,10 @@ const routes = [
   {
     path: '/account/profile',
     component: UserProfile,
+  },
+  {
+    path: '/employee',
+    component: EmployeeWorkspace,
   },
 ];
 
