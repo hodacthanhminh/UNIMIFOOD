@@ -1,10 +1,13 @@
 import * as type from './type';
+import { loadRole, clearRole } from './role';
 import accountApi from '../api/accountApi';
 
-export const Logout = () => (dispatch) =>
+export const Logout = () => (dispatch) => {
   dispatch({
     type: type.ACCOUNT_LOGOUT,
   });
+  dispatch(clearRole);
+};
 
 export const LoadUser = () => async (dispatch) => {
   try {
@@ -19,6 +22,12 @@ export const LoadUser = () => async (dispatch) => {
         type: type.ACCOUNT_LOAD_PROFILE_SUCCESS,
         payload: res.data,
       });
+      dispatch(
+        loadRole(
+          res.data.user.account_role,
+          res.data.user.account_role_info,
+        ),
+      );
     }
   } catch (error) {
     dispatch({ type: type.ACCOUNT_AUTHENTICATION_FAILED });

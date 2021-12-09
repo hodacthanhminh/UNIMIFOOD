@@ -34,3 +34,8 @@ export const STORE_ID_LOAD_SUCCESS = 'store_id/load_store_success';
 export const STORE_ID_LOAD_FAILED = 'store_id/load_store_fail';
 export const STORE_ID_ADD_CART = 'store_id/add_cart';
 export const STORE_ID_REMOVE_CART = 'store_id/remove_cart';
+
+// role
+export const ROLE_LOAD_EMPLOYEE = 'role/load_employee';
+export const ROLE_LOAD_CUSTOMER = 'role/load_customer';
+export const ROLE_CLEAR_ALL = 'role/clear_all';
