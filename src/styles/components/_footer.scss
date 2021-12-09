@@ -1,19 +1,18 @@
 .footer {
   background-color: $white;
 
-  &__main {
+  &-main {
     padding: 32px 0;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
   }
 
-  &__section-heading {
+  &-section-heading {
     font-size: 16px;
     margin-bottom: 24px;
   }
 
-  &__company {
-    flex: 1;
+  &-company {
+    grid-area: company;
 
     &-item {
       color: $link-color;
@@ -22,9 +21,9 @@
     }
   }
 
-  &__more {
+  &-more {
     text-align: center;
-    flex: 1;
+    grid-area: more;
 
     &-logo {
       font-size: 24px;
@@ -68,17 +67,17 @@
     }
   }
 
-  &__application {
-    flex: 1;
+  &-application {
+    grid-area: application;
 
     &-item {
       line-height: 30px;
     }
   }
 
-  &__location {
+  &-location {
     text-align: right;
-    flex: 2;
+    grid-area: location;
 
     & p {
       color: $gray-darker;
@@ -87,6 +86,47 @@
         color: $link-color;
         cursor: pointer;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .footer {
+    &-main {
+      grid-template-areas: "more" "company" "application" "location";
+      grid-template-columns: 1fr;
+      grid-row-gap: 12px;
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 475px) and (max-width: 809px) {
+  .footer {
+    &-main {
+      grid-template-areas: "company more application" "location location location";
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-row-gap: 12px;
+      width: 100%;
+    }
+
+    &-application {
+      grid-area: application;
+      align-items: end;
+      justify-self: end;
+
+      &-item {
+        line-height: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 810px) {
+  .footer {
+    &-main {
+      grid-template-areas: "company application more location ";
+      grid-template-columns: 1fr 1fr 2fr 2fr;
     }
   }
 }

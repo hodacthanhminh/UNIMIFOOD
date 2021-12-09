@@ -1,5 +1,5 @@
 #user {
-  &__dropdown {
+  &-dropdown {
     width: 100%;
 
     & .image {
@@ -31,18 +31,6 @@
     grid-template-columns: 45px 1fr auto;
     align-items: center;
     gap: 0 4px;
-
-    &::after {
-      content: "";
-      width: 0;
-      height: 0;
-      margin-left: 0.255em;
-      vertical-align: 0.255em;
-      border-top: 0.3em solid;
-      border-right: 0.3em solid transparent;
-      border-bottom: 0;
-      border-left: 0.3em solid transparent;
-    }
   }
 
   &-menu {
@@ -78,5 +66,48 @@
       width: inherit;
       background-color: $gray-darker;
     }
+  }
+}
+
+@media only screen and (min-width: 810px) {
+  .dropdown {
+    position: relative;
+
+    &-toggle {
+      display: grid;
+      grid-template-columns: 45px 1fr auto;
+      align-items: center;
+      gap: 0 4px;
+
+      &::after {
+        content: "";
+        width: 0;
+        height: 0;
+        margin-left: 0.255em;
+        vertical-align: 0.255em;
+        border-top: 0.3em solid;
+        border-right: 0.3em solid transparent;
+        border-bottom: 0;
+        border-left: 0.3em solid transparent;
+      }
+    }
+  }
+
+  .ant-drawer.ant-drawer-right.ant-drawer-open.header-drawer {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 375px) and (max-width: 809px) {
+  .user-account {
+    width: 100%;
+  }
+
+  #user-dropdown .name {
+    max-width: 150px;
+  }
+
+  .customer-dropdown-menu {
+    display: none;
   }
 }
