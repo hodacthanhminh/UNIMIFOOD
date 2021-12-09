@@ -23,21 +23,23 @@ const StoreCard = ({
           alt={storeAltImage}
         />
       </div>
-      <div className="store-card-content">
-        <div className="store-card-info">
-          <h4 className="store-card-name" title={storeName}>
-            {storeName}
-          </h4>
-          <div className="store-card-address" title={storeAddress}>
-            {storeAddress}
+      <div className="store-card-content-wrapper">
+        <div className="store-card-content-wrapper-inner ">
+          <div className="store-card-info">
+            <h4 className="store-card-name" title={storeName}>
+              {storeName}
+            </h4>
+            <div className="store-card-address" title={storeAddress}>
+              {storeAddress}
+            </div>
           </div>
-        </div>
-        <Divider className="store-card-divider" />
-        <div className="store-card-tag">
-          <TagList
-            className="store-card-type"
-            value={storeCategory}
-          />
+          <Divider className="store-card-divider" />
+          <div className="store-card-tag">
+            <TagList
+              className="store-card-type"
+              value={storeCategory}
+            />
+          </div>
         </div>
       </div>
     </div>

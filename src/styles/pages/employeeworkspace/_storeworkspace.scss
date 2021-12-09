@@ -42,7 +42,7 @@
 
   &-paragraph {
     width: 100%;
-    display: box;
+    display: flex;
     overflow: hidden;
     text-overflow: ellipsis;
     -webkit-line-clamp: 3;

@@ -16,7 +16,7 @@ const AccountLogin = () => (
   </Link>
 );
 
-const Header = ({ isAuth, loadUserAction, logout }) => {
+const Header = ({ isAuth, loadUserAction, logout, user }) => {
   useEffect(() => {
     loadUserAction();
   }, []);
@@ -102,6 +102,33 @@ const Header = ({ isAuth, loadUserAction, logout }) => {
                     About
                   </NavLink>
                 </List.Item>
+                {user.account_role === 'customer' && (
+                  <List.Item>
+                    <NavLink
+                      className="menu-link"
+                      to="/customer/history"
+                    >
+                      Lịch sử đơn hàng
+                    </NavLink>
+                  </List.Item>
+                )}
+                {user.account_role === 'employee' && (
+                  <List.Item>
+                    <NavLink className="menu-link" to="/employee">
+                      Quản lý cửa hàng
+                    </NavLink>
+                  </List.Item>
+                )}
+                {isAuth && (
+                  <List.Item>
+                    <NavLink
+                      className="menu-link"
+                      to="/account/profile"
+                    >
+                      Thông tin cá nhân
+                    </NavLink>
+                  </List.Item>
+                )}
               </List>
             </Drawer>
           </div>
@@ -115,13 +142,18 @@ Header.propTypes = {
   isAuth: PropTypes.bool,
   loadUserAction: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    account_role: PropTypes.string,
+  }),
 };
 Header.defaultProps = {
   isAuth: null,
+  user: null,
 };
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
+  user: state.auth.user,
 });
 
 const mapDispatchToProps = {
