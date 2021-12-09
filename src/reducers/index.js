@@ -5,6 +5,7 @@ import storeview from './storeview';
 import storedata from './storedata';
 import storeid from './storeid';
 import role from './role';
+import employee from './employee';
 
 export default combineReducers({
   auth,
@@ -12,4 +13,5 @@ export default combineReducers({
   storedata,
   storeid,
   role,
+  employee,
 });

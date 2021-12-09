@@ -5,7 +5,6 @@ export const loadRole = (role, roleInfo) => (dispatch) => {
     role === 'customer'
       ? type.ROLE_LOAD_CUSTOMER
       : type.ROLE_LOAD_EMPLOYEE;
-  console.log(typeDispatch);
   return dispatch({
     type: typeDispatch,
     payload: roleInfo,

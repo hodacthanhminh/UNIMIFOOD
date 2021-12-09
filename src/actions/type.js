@@ -39,3 +39,14 @@ export const STORE_ID_REMOVE_CART = 'store_id/remove_cart';
 export const ROLE_LOAD_EMPLOYEE = 'role/load_employee';
 export const ROLE_LOAD_CUSTOMER = 'role/load_customer';
 export const ROLE_CLEAR_ALL = 'role/clear_all';
+
+// employee
+export const EMPLOYEE_LOAD_PROFILE = 'role_emplyee/load_profile';
+export const EMPLOYEE_LOAD_PROFILE_FAILED =
+  'role_emplyee/load_profile_fail';
+export const EMPLOYEE_LOAD_PROFILE_SUCCESS =
+  'role_emplyee/load_profile_success';
+export const EMPLOYEE_CREATE_STORE_FAILED =
+  'role_emplyee/create_store_fail';
+export const EMPLOYEE_CREATE_STORE_SUCCESS =
+  'role_employee/creat_store_success';
