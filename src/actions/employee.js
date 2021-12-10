@@ -8,7 +8,6 @@ export const LoadingEmployee = (dispatch) =>
 
 export const LoadEmployee = () => async (dispatch) => {
   dispatch(LoadingEmployee);
-  console.log('>> Loading');
   try {
     const res = await employeeApi.getSelf();
     if (res.status === 'Error') {

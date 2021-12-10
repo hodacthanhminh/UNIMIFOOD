@@ -78,7 +78,6 @@ export const Register = (formData) => async (dispatch) => {
 
 export const UpdateAccount = (formData, id) => async (dispatch) => {
   try {
-    console.log(formData, id);
     const res = await accountApi.accountUpdate(formData, id);
     if (res.status === 'Error') {
       dispatch({
