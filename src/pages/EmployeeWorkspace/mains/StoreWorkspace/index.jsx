@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // components
 import TagList from '../../../../components/TagList';
 
@@ -9,27 +10,29 @@ const StoreWorkspace = ({ store }) => {
   if (store == null) return <> </>;
   return (
     <div className="store-workspace-wrapper">
-      <div className="store-workspace-wrapper-inner">
-        <div className="store-workspace-image-wrapper">
-          <img
-            className="store-workspace-image"
-            src={`${process.env.REACT_APP_URL + store.logo}`}
-            alt="store-avatar"
-          />
+      <Link to="/employee/store">
+        <div className="store-workspace-wrapper-inner">
+          <div className="store-workspace-image-wrapper">
+            <img
+              className="store-workspace-image"
+              src={`${process.env.REACT_APP_URL + store.logo}`}
+              alt="store-avatar"
+            />
+          </div>
+          <div className="store-workspace-name">{store.name}</div>
+          <div className="store-workspace-description">
+            <p className="store-workspace-paragraph">
+              {store.description}
+            </p>
+          </div>
+          <div className="store-card-tag">
+            <TagList
+              className="store-card-type"
+              value={store.store_category.slug}
+            />
+          </div>
         </div>
-        <div className="store-workspace-name">{store.name}</div>
-        <div className="store-workspace-description">
-          <p className="store-workspace-paragraph">
-            {store.description}
-          </p>
-        </div>
-        <div className="store-card-tag">
-          <TagList
-            className="store-card-type"
-            value={store.store_category.slug}
-          />
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };
