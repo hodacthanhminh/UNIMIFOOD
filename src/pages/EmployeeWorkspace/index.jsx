@@ -68,7 +68,7 @@ EmployeeWorkspace.defaultProps = {
 
 EmployeeWorkspace.propTypes = {
   employeeInfo: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
   }),
   user: PropTypes.shape({
     account_role: PropTypes.string,

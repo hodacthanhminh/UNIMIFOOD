@@ -1,19 +1,27 @@
 // libs
 import React from 'react';
 import { Tabs } from 'antd';
+// components
+import StoreDashboardInfo from './mains/StoreDashboardInfo';
+import StoreDashboardOrder from './mains/StoreDashboardOrder';
+import StoreDashboardMenus from './mains/StoreDashboardMenus';
 
 const StoreDashboard = () => (
   <div className="store-dashboard-wrapper">
     <div className="store-dashboard-wrapper-inner">
-      <Tabs defaultActiveKey="1" type="card">
+      <Tabs
+        defaultActiveKey="1"
+        type="card"
+        className="store-dashboard-tabs"
+      >
         <Tabs.TabPane tab="Thông tin cửa hàng" key="1">
-          Content of tab 1
+          <StoreDashboardInfo />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Tab 2" key="2">
-          Content of tab 2
+        <Tabs.TabPane tab="Thực đơn" key="2">
+          <StoreDashboardMenus />
         </Tabs.TabPane>
-        <Tabs.TabPane tab="Tab 3" key="3">
-          Content of tab 3
+        <Tabs.TabPane tab="Đơn hàng" key="3">
+          <StoreDashboardOrder />
         </Tabs.TabPane>
       </Tabs>
     </div>
