@@ -1,5 +1,6 @@
 import * as type from './type';
 import storeApi from '../api/storeApi';
+import menuApi from '../api/menuApi';
 
 export const ClearStoreControl = (dispatch) =>
   dispatch({
@@ -9,6 +10,10 @@ export const ClearStoreControl = (dispatch) =>
 export const StoreLoading = () => async (dispatch) =>
   dispatch({
     type: type.STORE_CONTROL_LOAD_STORE,
+  });
+export const MenuLoading = () => async (dispatch) =>
+  dispatch({
+    type: type.STORE_CONTROL_LOAD_MENU,
   });
 
 export const LoadStore = (id) => async (dispatch) => {
@@ -48,3 +53,37 @@ export const UpdateStore =
       dispatch({ type: type.STORE_CONTROL_UPDATE_STORE_FAILED });
     }
   };
+
+export const CreateMenu = (formData) => async (dispatch) => {
+  dispatch(MenuLoading);
+  try {
+    const res = await menuApi.createMenu(formData);
+    if (res.status === 'Error') {
+      dispatch({ type: type.STORE_CONTROL_CREATE_MENU_FAILED });
+    } else {
+      dispatch({
+        type: type.STORE_CONTROL_CREATE_MENU_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({ type: type.STORE_CONTROL_CREATE_MENU_FAILED });
+  }
+};
+
+export const UpdateMenu = (formData, id) => async (dispatch) => {
+  dispatch(MenuLoading);
+  try {
+    const res = await menuApi.updateMenu(formData, id);
+    if (res.status === 'Error') {
+      dispatch({ type: type.STORE_CONTROL_UPDATE_MENU_FAILED });
+    } else {
+      dispatch({
+        type: type.STORE_CONTROL_UPDATE_MENU_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({ type: type.STORE_CONTROL_UPDATE_MENU_FAILED });
+  }
+};

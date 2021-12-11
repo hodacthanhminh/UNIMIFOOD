@@ -74,3 +74,13 @@ export const STORE_CONTROL_UPDATE_STORE_SUCCESS =
 export const STORE_CONTROL_UPDATE_STORE_FAILED =
   'store_control/update_store_fail';
 export const STORE_CONTROLL_CLEAR_ALL = 'store_control/clear_all';
+export const STORE_CONTROL_CREATE_MENU_FAILED =
+  'store_control/create_menu_fail';
+export const STORE_CONTROL_CREATE_MENU_SUCCESS =
+  'store_control/create_menu_success';
+export const STORE_CONTROL_CREATE_MENU = 'store_control/create_menu';
+export const STORE_CONTROL_UPDATE_MENU_FAILED =
+  'store_control/update_menu_fail';
+export const STORE_CONTROL_UPDATE_MENU_SUCCESS =
+  'store_control/update_menu_success';
+export const STORE_CONTROL_UPDATE_MENU = 'store_control/update_menu';

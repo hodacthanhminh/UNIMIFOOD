@@ -20,6 +20,7 @@ const storecontrol = (state = initialState, action) => {
         isError: false,
         isLoadingStore: true,
       };
+    case actionType.STORE_CONTROL_CREATE_MENU:
     case actionType.STORE_CONTROL_LOAD_MENU:
       return {
         ...state,
@@ -41,15 +42,6 @@ const storecontrol = (state = initialState, action) => {
         storeInfo: payload.store,
         storeMenus: payload.store.menus,
       };
-    case actionType.STORE_CONTROL_LOAD_MENU_SUCCESS: {
-      const newMenu = [...state.storeMenus, payload.menu];
-      return {
-        ...state,
-        storeMenus: newMenu,
-        isLoadingMenus: false,
-        isError: false,
-      };
-    }
     case actionType.STORE_CONTROL_LOAD_ORDER_SUCCESS:
       return {
         ...state,
@@ -64,7 +56,32 @@ const storecontrol = (state = initialState, action) => {
         isError: false,
         storeInfo: payload.store,
       };
+    case actionType.STORE_CONTROL_CREATE_MENU_SUCCESS: {
+      const newMenu = [...state.storeMenus, payload.menu];
+      return {
+        ...state,
+        storeMenus: newMenu,
+        isLoadingMenus: false,
+        isError: false,
+      };
+    }
+    case actionType.STORE_CONTROL_UPDATE_MENU_SUCCESS: {
+      const updateMenu = payload.menu;
+      const newStoreMenu = state.storeMenus.map((menu) => {
+        let newMenu;
+        if (menu.id === updateMenu.id) {
+          newMenu = { ...updateMenu };
+        } else newMenu = { ...menu };
+        return newMenu;
+      });
+      return {
+        ...state,
+        storeMenus: newStoreMenu,
+      };
+    }
     case actionType.STORE_CONTROL_UPDATE_STORE_FAILED:
+    case actionType.STORE_CONTROL_CREATE_MENU_FAILED:
+    case actionType.STORE_CONTROL_UPDATE_MENU_FAILED:
       return {
         ...state,
       };
