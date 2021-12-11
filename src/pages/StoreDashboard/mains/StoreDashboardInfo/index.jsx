@@ -2,6 +2,7 @@
 // libs
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { UploadOutlined, EditOutlined } from '@ant-design/icons';
 import {
   Button,
@@ -116,6 +117,36 @@ const StoreDashboardInfo = ({
     openTime: store?.open_time,
     closeTIme: store?.close_time,
   });
+  const history = useHistory();
+
+  useEffect(() => {
+    if (employeeStore) loadStore(employeeStore.id);
+  }, [employeeStore]);
+  useEffect(() => {
+    if (isError) history.push('/somethingwrong');
+  }, [isLoading, isError]);
+
+  useEffect(() => {
+    const newForm = {
+      name: store?.name,
+      email: store?.email,
+      phone: store?.phone,
+      address: store?.address,
+      description: store?.description,
+      open_time: moment(
+        store.open_time ? store.open_time : 0,
+        'HH:mm:ss',
+      ),
+      close_time: moment(
+        store.close_time ? store.close_time : 0,
+        'HH:mm:ss',
+      ),
+      store_category: store?.store_category?.id,
+    };
+    updateOpen(store.open_time);
+    updateClose(store.close_time);
+    setUpdateForm(newForm);
+  }, [store, employeeStore]);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -176,33 +207,6 @@ const StoreDashboardInfo = ({
     if (selectedFile) data.append('logo', selectedFile);
     updateStore(data, store.id);
   };
-
-  useEffect(() => {
-    loadStore(employeeStore.id);
-  }, []);
-  useEffect(() => {}, [isLoading, isError]);
-
-  useEffect(() => {
-    const newForm = {
-      name: store?.name,
-      email: store?.email,
-      phone: store?.phone,
-      address: store?.address,
-      description: store?.description,
-      open_time: moment(
-        store.open_time ? store.open_time : 0,
-        'HH:mm:ss',
-      ),
-      close_time: moment(
-        store.close_time ? store.close_time : 0,
-        'HH:mm:ss',
-      ),
-      store_category: store?.store_category?.id,
-    };
-    updateOpen(store.open_time);
-    updateClose(store.close_time);
-    setUpdateForm(newForm);
-  }, [store, employeeStore]);
 
   return (
     <div className="dashboard-tab-wrapper">
