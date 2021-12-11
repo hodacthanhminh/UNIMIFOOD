@@ -78,6 +78,16 @@ const storecontrol = (state = initialState, action) => {
         storeMenus: {},
         storeOrder: [],
       };
+    case actionType.STORE_CONTROLL_CLEAR_ALL:
+      return {
+        isLoadingStore: true,
+        isLoadingMenus: true,
+        isLoadingOrder: true,
+        isError: false,
+        storeInfo: {},
+        storeMenus: {},
+        storeOrder: [],
+      };
     default:
       return { ...state };
   }

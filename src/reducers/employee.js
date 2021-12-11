@@ -3,7 +3,7 @@ import * as actionType from '../actions/type';
 const initialState = {
   employeeInfo: {},
   employeeStore: {},
-  isLoading: false,
+  isLoading: true,
   isError: false,
 };
 

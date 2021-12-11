@@ -1,6 +1,11 @@
 import * as type from './type';
 import storeApi from '../api/storeApi';
 
+export const ClearStoreControl = (dispatch) =>
+  dispatch({
+    type: type.STORE_CONTROLL_CLEAR_ALL,
+  });
+
 export const StoreLoading = () => async (dispatch) =>
   dispatch({
     type: type.STORE_CONTROL_LOAD_STORE,

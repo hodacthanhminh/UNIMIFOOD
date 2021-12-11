@@ -1,5 +1,6 @@
 import * as type from './type';
 import { loadRole, clearRole } from './role';
+import { ClearStoreControl } from './storecontrol';
 import accountApi from '../api/accountApi';
 
 export const Logout = () => (dispatch) => {
@@ -7,6 +8,7 @@ export const Logout = () => (dispatch) => {
     type: type.ACCOUNT_LOGOUT,
   });
   dispatch(clearRole);
+  dispatch(ClearStoreControl);
 };
 
 export const LoadUser = () => async (dispatch) => {

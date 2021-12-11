@@ -73,3 +73,4 @@ export const STORE_CONTROL_UPDATE_STORE_SUCCESS =
   'store_control/update_store_success';
 export const STORE_CONTROL_UPDATE_STORE_FAILED =
   'store_control/update_store_fail';
+export const STORE_CONTROLL_CLEAR_ALL = 'store_control/clear_all';
