@@ -64,10 +64,13 @@ const storecontrol = (state = initialState, action) => {
         isError: false,
         storeInfo: payload.store,
       };
+    case actionType.STORE_CONTROL_UPDATE_STORE_FAILED:
+      return {
+        ...state,
+      };
     case actionType.STORE_CONTROL_LOAD_MENU_FAILED:
     case actionType.STORE_CONTROL_LOAD_ORDER_FAILED:
     case actionType.STORE_CONTROL_LOAD_STORE_FAILED:
-    case actionType.STORE_CONTROL_UPDATE_STORE_FAILED:
       return {
         ...state,
         isError: true,
