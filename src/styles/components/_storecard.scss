@@ -51,7 +51,6 @@
         & .store-card-address {
           text-align: start;
           min-height: 17px;
-          max-width: 165px;
           color: $gray-darker;
           font-size: 0.7rem;
           text-overflow: ellipsis;
@@ -75,6 +74,10 @@
       }
     }
   }
+
+  .store-card-address {
+    max-width: 250px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 979px) {
@@ -89,9 +92,13 @@
       }
     }
   }
+
+  .store-card-address {
+    max-width: 150px;
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 360px) and (max-width: 600px) {
   .store-card-wrapper {
     & .store-card-wrapper-inner {
       & .store-card-divider {
@@ -106,5 +113,9 @@
         width: 100%;
       }
     }
+  }
+
+  .store-card-address {
+    max-width: 125px;
   }
 }
