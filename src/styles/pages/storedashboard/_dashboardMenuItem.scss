@@ -1,0 +1,21 @@
+.dashboard-menu-item-wrapper {
+  & .ant-card-head {
+    background-color: $white-dark;
+    color: $gray-darkest;
+    font-weight: bold;
+
+    &-wrapper {
+      & .ant-card-extra {
+        & .dashboard-menu-card-button.ant-btn {
+          color: $primary-color;
+          border-color: $primary-color;
+        }
+      }
+    }
+  }
+
+  &-inner {
+    display: grid;
+    grid-row-gap: 8px;
+  }
+}

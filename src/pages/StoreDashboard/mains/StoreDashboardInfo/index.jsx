@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // libs
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { UploadOutlined, EditOutlined } from '@ant-design/icons';
@@ -37,9 +37,10 @@ const CollectionCreateForm = ({
   onCancel,
   formData,
 }) => {
-  const [form] = Form.useForm();
+  const formRef = useRef(null);
+  const [formControl] = Form.useForm();
   useEffect(() => {
-    form.setFieldsValue(formData);
+    if (formRef.current) formControl.setFieldsValue(formData);
   }, [formData, visible]);
   return (
     <Modal
@@ -49,16 +50,21 @@ const CollectionCreateForm = ({
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
-        form
+        formControl
           .validateFields()
           .then((values) => {
             onCreate(values);
-            form.resetFields();
+            formControl.resetFields();
           })
           .catch(() => {});
       }}
     >
-      <Form form={form} layout="vertical" initialValues={formData}>
+      <Form
+        form={formControl}
+        layout="vertical"
+        initialValues={formData}
+        ref={formRef}
+      >
         <Form.Item name="name" label="Name">
           <Input />
         </Form.Item>
@@ -94,11 +100,15 @@ const CollectionCreateForm = ({
   );
 };
 
+CollectionCreateForm.defaultProps = {
+  formData: null,
+};
+
 CollectionCreateForm.propTypes = {
   visible: PropTypes.bool.isRequired,
   onCreate: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  formData: PropTypes.shape({}).isRequired,
+  formData: PropTypes.shape({}),
 };
 
 const StoreDashboardInfo = ({
@@ -284,7 +294,7 @@ const StoreDashboardInfo = ({
                   <Descriptions.Item label="Email" span={2}>
                     {store?.email}
                   </Descriptions.Item>
-                  <Descriptions.Item label="Phone" span={2}>
+                  <Descriptions.Item label="Phone" span={1}>
                     {store?.phone}
                   </Descriptions.Item>
                   <Descriptions.Item label="Address" span={3}>
