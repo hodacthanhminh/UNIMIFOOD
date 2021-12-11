@@ -8,7 +8,7 @@
     &-inner {
       display: grid;
       grid-template-columns: 60px 1fr auto auto;
-      grid-column-gap: 8px;
+      grid-column-gap: 16px;
     }
   }
 
@@ -32,6 +32,9 @@
   }
 
   &-name {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     font-size: 1rem;
     font-weight: 600;
   }

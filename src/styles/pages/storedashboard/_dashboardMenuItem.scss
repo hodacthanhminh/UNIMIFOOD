@@ -4,12 +4,16 @@
     color: $gray-darkest;
     font-weight: bold;
 
-    &-wrapper {
-      & .ant-card-extra {
-        & .dashboard-menu-card-button.ant-btn {
-          color: $primary-color;
-          border-color: $primary-color;
-        }
+    & .dashboard-menu-card-button.ant-btn {
+      margin-left: 8px;
+      border-color: transparent;
+      background-color: transparent;
+
+      &:hover,
+      &:focus {
+        color: $primary-color;
+        border-color: transparent;
+        background-color: transparent;
       }
     }
   }

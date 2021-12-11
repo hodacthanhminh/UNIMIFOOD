@@ -1,0 +1,30 @@
+.dashboard-menus {
+  &-wrapper-inner {
+    display: grid;
+    grid-template-rows: 50px 1fr;
+    grid-column-gap: 12px;
+  }
+
+  &-create {
+    &-wrapper {
+      justify-self: end;
+    }
+
+    &-button.ant-btn {
+      color: $primary-color;
+      border-color: $primary-color;
+
+      &:hover,
+      &:focus {
+        color: $white;
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+    }
+  }
+
+  &-body {
+    display: grid;
+    grid-row-gap: 12px;
+  }
+}
