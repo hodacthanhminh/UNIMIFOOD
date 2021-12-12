@@ -1,7 +1,7 @@
 {
   "name": "unimifood",
   "version": "0.1.0",
-  "homepage": "https://github.com/hodacthanhminh/UNIMIFOOD.git",
+  "homepage": "http://hodacthanhminh.github.io/UNIMIFOOD",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
