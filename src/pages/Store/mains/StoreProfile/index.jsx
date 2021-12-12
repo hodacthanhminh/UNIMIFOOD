@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Rate, Badge } from 'antd';
+import classnames from 'classnames';
 import {
   DollarOutlined,
   InfoCircleFilled,
@@ -11,10 +12,16 @@ import {
 } from '@ant-design/icons';
 // components
 import TagList from '../../../../components/TagList';
+// hooks
+import { useStoreTime } from '../../../../hooks/useStoreTime';
 
 const StoreProfile = ({ store }) => {
-  useEffect(() => {}, [store]);
+  const { storeState } = useStoreTime({
+    openTime: store?.open_time,
+    closeTime: store?.close_time,
+  });
 
+  useEffect(() => {}, [store]);
   return (
     <div className="store-profile-wrapper">
       <div className="store-profile-wrapper-inner">
@@ -39,9 +46,12 @@ const StoreProfile = ({ store }) => {
             <span className="store-address">{store?.address}</span>
             <br />
             <Badge
-              status="success"
-              text="Mở cửa"
-              className="store-status"
+              status={storeState.status}
+              text={storeState.text}
+              className={classnames(
+                'store-status',
+                storeState.status,
+              )}
             />
           </div>
           <div className="store-profile-info-description item-row">
@@ -83,6 +93,8 @@ StoreProfile.propTypes = {
     }),
     address: PropTypes.string,
     name: PropTypes.string,
+    open_time: PropTypes.string,
+    close_time: PropTypes.string,
   }),
 };
 

@@ -56,9 +56,18 @@
         }
 
         &-status {
-          & .ant-badge-status-text {
-            font-weight: 700;
-            color: #52c41a;
+          &.success {
+            & .ant-badge-status-text {
+              font-weight: 500;
+              color: $green;
+            }
+          }
+
+          &.error {
+            & .ant-badge-status-text {
+              font-weight: 500;
+              color: $red;
+            }
           }
         }
       }

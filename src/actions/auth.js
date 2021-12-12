@@ -2,6 +2,7 @@ import * as type from './type';
 import { loadRole, clearRole } from './role';
 import { ClearStoreControl } from './storecontrol';
 import accountApi from '../api/accountApi';
+import { openNoti } from './notification';
 
 export const Logout = () => (dispatch) => {
   dispatch({
@@ -40,10 +41,12 @@ export const Login = (params) => async (dispatch) => {
   try {
     const res = await accountApi.accountLogin(params);
     if (res.status === 'Error') {
+      openNoti('error', 'Login', 'Login Fail');
       dispatch({
         type: type.ACCOUNT_LOGIN_FAIL,
       });
     } else {
+      openNoti('success', 'Login', 'Login Success');
       dispatch({
         type: type.ACCOUNT_LOGIN_SUCCESS,
         payload: res.data,
@@ -51,6 +54,7 @@ export const Login = (params) => async (dispatch) => {
       dispatch(LoadUser());
     }
   } catch (error) {
+    openNoti('error', 'Login', 'Login Fail');
     dispatch({
       type: type.ACCOUNT_LOGIN_FAIL,
     });
@@ -61,16 +65,25 @@ export const Register = (formData) => async (dispatch) => {
   try {
     const res = await accountApi.accountRegister(formData);
     if (res.status === 'Error') {
+      openNoti(
+        'error',
+        'Register',
+        'Register Fail - Password must have Capital and number/Email have been used',
+      );
       dispatch({
         type: type.ACCOUNT_REGISTERED_FAILED,
       });
     } else {
+      openNoti('success', 'Register', 'Register Success');
       dispatch({ type: type.ACCOUNT_REGISTERED_SUCCESS });
     }
   } catch (error) {
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
+      openNoti(
+        'error',
+        'Register',
+        'Register Fail - Password must have Capital and number/Email have been used',
+      );
       dispatch({
         type: type.ACCOUNT_REGISTERED_FAILED,
       });
@@ -82,10 +95,13 @@ export const UpdateAccount = (formData, id) => async (dispatch) => {
   try {
     const res = await accountApi.accountUpdate(formData, id);
     if (res.status === 'Error') {
+      openNoti('error', 'Update Account', 'Update account error');
+
       dispatch({
         type: type.ACCOUNT_UPDATE_FAILED,
       });
     } else {
+      openNoti('success', 'Update Account', 'Update account success');
       dispatch({
         type: type.ACCOUNT_UPDATE_SUCCESS,
         payload: res.data,
@@ -93,8 +109,7 @@ export const UpdateAccount = (formData, id) => async (dispatch) => {
     }
   } catch (error) {
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
+      openNoti('error', 'Update Account', 'Update account error');
       dispatch({
         type: type.ACCOUNT_UPDATE_FAILED,
       });

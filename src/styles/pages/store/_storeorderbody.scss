@@ -6,8 +6,17 @@
     &-inner {
       height: 100%;
       display: grid;
-      grid-template-rows: 1fr 40px;
+      grid-template-rows: 1fr 10px 20px 40px;
       grid-row-gap: 24px;
+    }
+  }
+
+  &-total {
+    display: flex;
+    justify-content: space-between;
+
+    &-label {
+      font-weight: 600;
     }
   }
 

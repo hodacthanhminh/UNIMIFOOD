@@ -4,6 +4,7 @@ const initialState = {
   storeId: {},
   menu: [],
   cart: [],
+  totalCart: 0,
   isLoading: false,
   isError: false,
 };
@@ -32,10 +33,12 @@ const storeid = (state = initialState, action) => {
         storeId: {},
         menus: [],
         cart: [],
+        totalCart: 0,
         isError: true,
       };
     case actionType.STORE_ID_ADD_CART: {
       const newItem = payload;
+      const newTotal = state.totalCart + newItem.price;
       const containItem = state.cart.some(
         (cart) => cart.item.id === newItem.id,
       );
@@ -58,10 +61,12 @@ const storeid = (state = initialState, action) => {
       return {
         ...state,
         cart: newCart,
+        totalCart: newTotal,
       };
     }
     case actionType.STORE_ID_REMOVE_CART: {
       const newItem = payload;
+      const newTotal = state.totalCart - newItem.price;
       const reduceCart = state.cart.map((cartItem) => {
         let cartItemAmount = cartItem.amount;
         if (cartItem.item.id === newItem.id) {
@@ -78,6 +83,7 @@ const storeid = (state = initialState, action) => {
       return {
         ...state,
         cart: newCart,
+        totalCart: newTotal,
       };
     }
     default:
