@@ -103,6 +103,22 @@ const storecontrol = (state = initialState, action) => {
         storeMenus: newStoreMenu,
       };
     }
+    case actionType.STORE_CONTROL_CREATE_ITEM_SUCCESS: {
+      const createItem = payload.item;
+      const newStoreMenu = state.storeMenus.map((menu) => {
+        let newMenu;
+        if (menu.id === createItem.menu) {
+          const newItems = [...menu.items, createItem];
+          newMenu = { ...menu, items: newItems };
+        } else newMenu = { ...menu };
+        return newMenu;
+      });
+      return {
+        ...state,
+        storeMenus: newStoreMenu,
+      };
+    }
+    case actionType.STORE_CONTROL_CREATE_ITEM_FAILED:
     case actionType.STORE_CONTROL_UPDATE_ITEM_FAILED:
     case actionType.STORE_CONTROL_UPDATE_STORE_FAILED:
     case actionType.STORE_CONTROL_CREATE_MENU_FAILED:

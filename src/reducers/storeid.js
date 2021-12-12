@@ -25,6 +25,7 @@ const storeid = (state = initialState, action) => {
         menu: payload.store.menus,
         isError: false,
         cart: [],
+        totalCart: 0,
       };
     case actionType.STORE_ID_LOAD_FAILED:
       return {

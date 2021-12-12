@@ -20,6 +20,28 @@
 
   &-inner {
     display: grid;
-    grid-row-gap: 8px;
+    grid-row-gap: 12px;
+
+    & .dashboard-menu {
+      &-item-list {
+        display: grid;
+        grid-row-gap: 12px;
+      }
+
+      &-item-add-button.ant-btn {
+        align-self: center;
+        justify-self: end;
+        color: $primary-color;
+        border-color: $primary-color;
+        background-color: $white;
+
+        &:hover,
+        &:focus {
+          color: $white;
+          border-color: $primary-color;
+          background-color: $primary-color;
+        }
+      }
+    }
   }
 }

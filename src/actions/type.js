@@ -91,3 +91,8 @@ export const STORE_CONTROL_UPDATE_ITEM_FAILED =
 export const STORE_CONTROL_UPDATE_ITEM_SUCCESS =
   'store_control/update_item_success';
 export const STORE_CONTROL_UPDATE_ITEM = 'store_control/update_item';
+export const STORE_CONTROL_CREATE_ITEM_FAILED =
+  'store_control/create_item_failed';
+export const STORE_CONTROL_CREATE_ITEM_SUCCESS =
+  'store_control/create_item_success';
+export const STORE_CONTROL_CREATE_ITEM = 'store_control/create_item';
