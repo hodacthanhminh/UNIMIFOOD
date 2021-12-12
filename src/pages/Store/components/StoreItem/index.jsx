@@ -34,6 +34,7 @@ const StoreItem = ({ storeItem, isAuth, addCart }) => {
           <span>đ</span>
         </div>
         <Button
+          disabled={!storeItem.is_active}
           className="store-item-button"
           icon={<PlusOutlined />}
           size="small"
@@ -54,6 +55,7 @@ StoreItem.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
+    is_active: PropTypes.bool,
   }),
   addCart: PropTypes.func.isRequired,
   isAuth: PropTypes.bool,

@@ -1,18 +1,23 @@
 // libs
 import React from 'react';
-import { Card } from 'antd';
+import { Badge, Card } from 'antd';
 import PropTypes from 'prop-types';
 // components
 import StoreItem from '../StoreItem';
 
 const StoreMenuItem = ({ menuItem }) => (
-  <Card title={menuItem.name} className="store-menu-item-wrapper">
-    <div className="store-menu-item-wrapper-inner">
-      {menuItem.items.map((item) => (
-        <StoreItem key={item.id} storeItem={item} />
-      ))}
-    </div>
-  </Card>
+  <Badge.Ribbon
+    text={menuItem.is_active ? 'Avalible' : 'Not Available'}
+    color={menuItem.is_active ? 'green' : 'red'}
+  >
+    <Card title={menuItem.name} className="store-menu-item-wrapper">
+      <div className="store-menu-item-wrapper-inner">
+        {menuItem.items.map((item) => (
+          <StoreItem key={item.id} storeItem={item} />
+        ))}
+      </div>
+    </Card>
+  </Badge.Ribbon>
 );
 
 StoreMenuItem.propTypes = {
@@ -23,6 +28,7 @@ StoreMenuItem.propTypes = {
         id: PropTypes.number,
       }),
     ),
+    is_active: PropTypes.bool,
   }).isRequired,
 };
 
