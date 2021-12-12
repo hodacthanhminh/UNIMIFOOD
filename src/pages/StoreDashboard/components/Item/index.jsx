@@ -1,13 +1,38 @@
 // libs
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Button } from 'antd';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
+// components
+import ModuleUpdateItem from '../ModuleUpdateItem';
+// redux
+import { UpdateItem } from '../../../../actions/storecontrol';
 
-const Item = ({ item }) => {
-  const handleOnClick = () => {
-    console.log(item);
+const Item = ({ item, updateItem }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [initialData] = useState({
+    name: item.name,
+    is_active: item.is_active,
+    price: item.price,
+  });
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const onCreate = (values) => {
+    let createForm = null;
+    if (values.name !== item.name) {
+      createForm = { name: values.name };
+    }
+    if (values.is_active !== item.is_active) {
+      createForm = { ...createForm, is_active: values.is_active };
+    }
+    if (createForm) updateItem(createForm, item.id);
+    setIsModalVisible(false);
   };
 
   return (
@@ -30,16 +55,21 @@ const Item = ({ item }) => {
             className="dashboard-item-button"
             icon={<EditFilled />}
             size="small"
-            onClick={handleOnClick}
+            onClick={showModal}
           />
           <Button
             className="dashboard-item-button"
             icon={<DeleteFilled />}
             size="small"
-            onClick={handleOnClick}
           />
         </div>
       </div>
+      <ModuleUpdateItem
+        visible={isModalVisible}
+        onCreate={onCreate}
+        onCancel={handleCancel}
+        formData={initialData}
+      />
     </div>
   );
 };
@@ -50,14 +80,17 @@ Item.defaultProps = {
 
 Item.propTypes = {
   item: PropTypes.shape({
+    id: PropTypes.number,
     name: PropTypes.string,
     image: PropTypes.string,
     price: PropTypes.number,
+    is_active: PropTypes.bool,
   }),
+  updateItem: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  updateItem: UpdateItem,
+};
 
-const mapStateToProps = () => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default connect(null, mapDispatchToProps)(Item);

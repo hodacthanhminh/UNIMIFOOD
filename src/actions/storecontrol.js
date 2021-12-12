@@ -87,3 +87,20 @@ export const UpdateMenu = (formData, id) => async (dispatch) => {
     dispatch({ type: type.STORE_CONTROL_UPDATE_MENU_FAILED });
   }
 };
+
+export const UpdateItem = (formData, id) => async (dispatch) => {
+  dispatch(MenuLoading);
+  try {
+    const res = await menuApi.updateItem(formData, id);
+    if (res.status === 'Error') {
+      dispatch({ type: type.STORE_CONTROL_UPDATE_ITEM_FAILED });
+    } else {
+      dispatch({
+        type: type.STORE_CONTROL_UPDATE_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({ type: type.STORE_CONTROL_UPDATE_ITEM_FAILED });
+  }
+};

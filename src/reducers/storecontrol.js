@@ -79,6 +79,31 @@ const storecontrol = (state = initialState, action) => {
         storeMenus: newStoreMenu,
       };
     }
+    case actionType.STORE_CONTROL_UPDATE_ITEM_SUCCESS: {
+      const updateItem = payload.item;
+      const newStoreMenu = state.storeMenus.map((menu) => {
+        let newMenu;
+        if (menu.id === updateItem.menu) {
+          const newMenuItems = menu.items.map((item) => {
+            let newItem;
+            if (item.id === updateItem.id) {
+              newItem = { ...updateItem };
+            } else newItem = { ...item };
+            return newItem;
+          });
+          newMenu = {
+            ...menu,
+            items: newMenuItems,
+          };
+        } else newMenu = { ...menu };
+        return newMenu;
+      });
+      return {
+        ...state,
+        storeMenus: newStoreMenu,
+      };
+    }
+    case actionType.STORE_CONTROL_UPDATE_ITEM_FAILED:
     case actionType.STORE_CONTROL_UPDATE_STORE_FAILED:
     case actionType.STORE_CONTROL_CREATE_MENU_FAILED:
     case actionType.STORE_CONTROL_UPDATE_MENU_FAILED:
