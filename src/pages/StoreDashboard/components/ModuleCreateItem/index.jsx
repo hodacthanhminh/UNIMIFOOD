@@ -38,7 +38,13 @@ const ModuleCreateItem = ({ visible, onCreate, onCancel }) => {
       }}
     >
       <Form form={form} layout="vertical" ref={formRef}>
-        <Form.Item label="Item Name" name="name">
+        <Form.Item
+          label="Item Name"
+          name="name"
+          rules={[
+            { required: true, message: 'Please input Item name!' },
+          ]}
+        >
           <Input />
         </Form.Item>
         <Form.Item name="is_active" label="Item status">
@@ -50,7 +56,13 @@ const ModuleCreateItem = ({ visible, onCreate, onCancel }) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label="Item price" name="price">
+        <Form.Item
+          label="Item price"
+          name="price"
+          rules={[
+            { required: true, message: 'Please input Item price!' },
+          ]}
+        >
           <Input />
         </Form.Item>
         <Form.Item
