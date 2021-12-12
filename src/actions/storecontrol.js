@@ -104,3 +104,20 @@ export const UpdateItem = (formData, id) => async (dispatch) => {
     dispatch({ type: type.STORE_CONTROL_UPDATE_ITEM_FAILED });
   }
 };
+
+export const CreateItem = (formData, id) => async (dispatch) => {
+  dispatch(MenuLoading);
+  try {
+    const res = await menuApi.createItem(formData, id);
+    if (res.status === 'Error') {
+      dispatch({ type: type.STORE_CONTROL_CREATE_ITEM_FAILED });
+    } else {
+      dispatch({
+        type: type.STORE_CONTROL_CREATE_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    }
+  } catch (err) {
+    dispatch({ type: type.STORE_CONTROL_CREATE_ITEM_FAILED });
+  }
+};

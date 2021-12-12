@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Modal, Input, Select, Button, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
@@ -7,12 +7,7 @@ import { isActive } from '../../../../dataSources/isActive';
 // hooks
 import { useImageUpload } from '../../../../hooks/useImageUpload';
 
-const ModuleUpdateItem = ({
-  visible,
-  onCreate,
-  onCancel,
-  formData,
-}) => {
+const ModuleCreateItem = ({ visible, onCreate, onCancel }) => {
   const formRef = useRef(null);
   const [form] = Form.useForm();
 
@@ -24,15 +19,11 @@ const ModuleUpdateItem = ({
 
   const { selectedFile, onSelectFile } = useImageUpload();
 
-  useEffect(() => {
-    form.setFieldsValue(formData);
-  }, [visible, formData]);
-
   return (
     <Modal
       visible={visible}
-      title="Edit item"
-      okText="Edit"
+      title="Create item"
+      okText="Create"
       cancelText="Cancel"
       onCancel={onCancel}
       onOk={() => {
@@ -46,12 +37,7 @@ const ModuleUpdateItem = ({
           .catch(() => {});
       }}
     >
-      <Form
-        form={form}
-        layout="vertical"
-        ref={formRef}
-        initialValues={formData}
-      >
+      <Form form={form} layout="vertical" ref={formRef}>
         <Form.Item label="Item Name" name="name">
           <Input />
         </Form.Item>
@@ -89,15 +75,15 @@ const ModuleUpdateItem = ({
   );
 };
 
-ModuleUpdateItem.defaultProps = {
+ModuleCreateItem.defaultProps = {
   formData: null,
 };
 
-ModuleUpdateItem.propTypes = {
+ModuleCreateItem.propTypes = {
   visible: PropTypes.bool.isRequired,
   onCreate: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   formData: PropTypes.shape({}),
 };
 
-export default ModuleUpdateItem;
+export default ModuleCreateItem;

@@ -2,20 +2,44 @@
 // libs
 import React, { useState } from 'react';
 import { Card, Button, Badge } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined, PlusOutlined } from '@ant-design/icons';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // components
 import Item from '../Item';
-import { UpdateMenu } from '../../../../actions/storecontrol';
+import {
+  UpdateMenu,
+  CreateItem,
+} from '../../../../actions/storecontrol';
 import ModuleUpdateMenu from '../ModuleUpdateMenu';
+import ModuleCreateItem from '../ModuleCreateItem';
 
-const MenuItem = ({ menuItems, updateMenu }) => {
+const MenuItem = ({ menuItems, updateMenu, createItem }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalCreateItem, setModalCreateItem] = useState(false);
   const [initialData] = useState({
     name: menuItems.name,
     is_active: menuItems.is_active,
   });
+
+  const showModalCreateItem = () => setModalCreateItem(true);
+  const handleCancelItem = () => {
+    setModalCreateItem(false);
+  };
+  const onCreateItem = (values) => {
+    const createForm = new FormData();
+    createForm.append('name', values.name);
+    createForm.append('is_active', values.is_active);
+    createForm.append('price', values.price);
+    createForm.append('menu', menuItems.id);
+    if (values.image !== null) {
+      createForm.append('image', values.image.file.originFileObj);
+    }
+    if (!createForm.entries().next().done) {
+      createItem(createForm);
+    }
+    setModalCreateItem(false);
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -34,6 +58,7 @@ const MenuItem = ({ menuItems, updateMenu }) => {
     if (createForm) updateMenu(createForm, menuItems.id);
     setIsModalVisible(false);
   };
+
   return (
     <div className="menu-item-wrapper">
       <Badge.Ribbon
@@ -54,9 +79,18 @@ const MenuItem = ({ menuItems, updateMenu }) => {
           className="dashboard-menu-item-wrapper"
         >
           <div className="dashboard-menu-item-wrapper-inner">
-            {menuItems?.items.map((item) => (
-              <Item key={item.id} item={item} />
-            ))}
+            <div className="dashboard-menu-item-list">
+              {menuItems?.items.map((item) => (
+                <Item key={item.id} item={item} />
+              ))}
+            </div>
+            <Button
+              icon={<PlusOutlined />}
+              className="dashboard-menu-item-add-button"
+              onClick={showModalCreateItem}
+            >
+              Add Item
+            </Button>
           </div>
         </Card>
       </Badge.Ribbon>
@@ -66,12 +100,18 @@ const MenuItem = ({ menuItems, updateMenu }) => {
         onCancel={handleCancel}
         formData={initialData}
       />
+      <ModuleCreateItem
+        visible={isModalCreateItem}
+        onCreate={onCreateItem}
+        onCancel={handleCancelItem}
+      />
     </div>
   );
 };
 
 MenuItem.propTypes = {
   updateMenu: PropTypes.func.isRequired,
+  createItem: PropTypes.func.isRequired,
   menuItems: PropTypes.shape({
     is_active: PropTypes.bool,
     name: PropTypes.string,
@@ -86,6 +126,7 @@ MenuItem.propTypes = {
 
 const mapDispatchToProps = {
   updateMenu: UpdateMenu,
+  createItem: CreateItem,
 };
 
 export default connect(null, mapDispatchToProps)(MenuItem);
