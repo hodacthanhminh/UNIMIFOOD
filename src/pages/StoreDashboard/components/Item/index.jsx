@@ -15,6 +15,7 @@ const Item = ({ item, updateItem }) => {
     name: item.name,
     is_active: item.is_active,
     price: item.price,
+    image: null,
   });
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const Item = ({ item, updateItem }) => {
       name: item.name,
       is_active: item.is_active,
       price: item.price,
+      image: null,
     });
   }, [item]);
 
@@ -32,17 +34,22 @@ const Item = ({ item, updateItem }) => {
     setIsModalVisible(false);
   };
   const onCreate = (values) => {
-    let createForm = null;
+    const createForm = new FormData();
     if (values.name !== item.name) {
-      createForm = { name: values.name };
+      createForm.append('name', values.name);
     }
     if (values.is_active !== item.is_active) {
-      createForm = { ...createForm, is_active: values.is_active };
+      createForm.append('is_active', values.is_active);
     }
     if (values.price !== item.price) {
-      createForm = { ...createForm, price: values.price };
+      createForm.append('price', values.price);
     }
-    if (createForm) updateItem(createForm, item.id);
+    if (values.image !== null) {
+      createForm.append('image', values.image.file.originFileObj);
+    }
+    if (!createForm.entries().next().done) {
+      updateItem(createForm, item.id);
+    }
     setIsModalVisible(false);
   };
 

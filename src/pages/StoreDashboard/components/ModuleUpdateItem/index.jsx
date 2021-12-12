@@ -1,8 +1,11 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Modal, Input, Select } from 'antd';
+import { Form, Modal, Input, Select, Button, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 // dataSources
 import { isActive } from '../../../../dataSources/isActive';
+// hooks
+import { useImageUpload } from '../../../../hooks/useImageUpload';
 
 const ModuleUpdateItem = ({
   visible,
@@ -12,6 +15,14 @@ const ModuleUpdateItem = ({
 }) => {
   const formRef = useRef(null);
   const [form] = Form.useForm();
+
+  const dummyRequest = ({ onSuccess }) => {
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
+
+  const { selectedFile, onSelectFile } = useImageUpload();
 
   useEffect(() => {
     form.setFieldsValue(formData);
@@ -28,6 +39,7 @@ const ModuleUpdateItem = ({
         form
           .validateFields()
           .then((values) => {
+            console.log(values);
             onCreate(values);
             form.resetFields();
           })
@@ -54,6 +66,23 @@ const ModuleUpdateItem = ({
         </Form.Item>
         <Form.Item label="Item price" name="price">
           <Input />
+        </Form.Item>
+        <Form.Item
+          name="image"
+          label="Item image"
+          valuePropName="file"
+          getValueFromEvent={selectedFile}
+        >
+          <Upload
+            name="logo"
+            customRequest={dummyRequest}
+            listType="picture"
+            fileList={selectedFile}
+          >
+            <Button icon={<UploadOutlined />} onClick={onSelectFile}>
+              Click to upload
+            </Button>
+          </Upload>
         </Form.Item>
       </Form>
     </Modal>
