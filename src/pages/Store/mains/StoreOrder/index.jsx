@@ -4,16 +4,13 @@ import React from 'react';
 // components
 import StoreOrderBody from '../../components/StoreOrderBody';
 
-const StoreOrder = () => {
-  console.log('store-odder');
-  return (
-    <div className="store-order-wrapper">
-      <div className="store-order-wrapper-inner">
-        <div className="store-order-heading">Giỏ hàng</div>
-        <StoreOrderBody />
-      </div>
+const StoreOrder = () => (
+  <div className="store-order-wrapper">
+    <div className="store-order-wrapper-inner">
+      <div className="store-order-heading">Giỏ hàng</div>
+      <StoreOrderBody />
     </div>
-  );
-};
+  </div>
+);
 
 export default StoreOrder;

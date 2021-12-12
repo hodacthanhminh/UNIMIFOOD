@@ -27,14 +27,14 @@ const StoreOrderBody = ({
   };
   const onCreate = (values) => {
     if (cart.length > 0) {
-      const createForm = new FormData();
-      createForm.append('store', storeId.id);
-      createForm.append('customer_address', values.customer_address);
-      cart.forEach((cartItem) => {
-        const { amount, item } = cartItem;
-        const orderItem = { quantity: amount, item: item.id };
-        createForm.append('order_items', orderItem);
-      });
+      const createForm = {
+        store: storeId.id,
+        customer_address: values.customer_address,
+        order_items: cart.map((cartItem) => ({
+          item: cartItem.item.id,
+          quantity: cartItem.amount,
+        })),
+      };
       createOrder(createForm);
     }
     setIsModalVisible(false);
