@@ -13,7 +13,7 @@ const HomeBody = ({ storeViewList, isLoading }) => {
   const [currentPage, pageSize, beginItem, endItem, handleOnChange] =
     usePagination({
       current: 1,
-      itemsPerPage: 15,
+      itemsPerPage: 12,
       totalItem: storeViewList.length,
     });
 
