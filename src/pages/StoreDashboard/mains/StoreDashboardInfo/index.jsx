@@ -65,12 +65,6 @@ const CollectionCreateForm = ({
         initialValues={formData}
         ref={formRef}
       >
-        <Form.Item name="name" label="Name">
-          <Input />
-        </Form.Item>
-        <Form.Item name="email" label="Email">
-          <Input />
-        </Form.Item>
         <Form.Item name="phone" label="Phone">
           <Input />
         </Form.Item>
@@ -138,8 +132,6 @@ const StoreDashboardInfo = ({
 
   useEffect(() => {
     const newForm = {
-      name: store?.name,
-      email: store?.email,
       phone: store?.phone,
       address: store?.address,
       description: store?.description,
@@ -168,9 +160,6 @@ const StoreDashboardInfo = ({
 
   const onCreate = (values) => {
     const intialForm = new FormData();
-    if (values.name !== store.name && values.name !== null) {
-      intialForm.append('name', values.name);
-    }
     if (values.address !== store.address && values.address !== null) {
       intialForm.append('address', values.address);
     }
