@@ -1,9 +1,9 @@
 // libs
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { Button, Badge } from 'antd';
+import { EditFilled } from '@ant-design/icons';
 // components
 import ModuleUpdateItem from '../ModuleUpdateItem';
 // redux
@@ -11,11 +11,19 @@ import { UpdateItem } from '../../../../actions/storecontrol';
 
 const Item = ({ item, updateItem }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [initialData] = useState({
+  const [initialData, setInitialData] = useState({
     name: item.name,
     is_active: item.is_active,
     price: item.price,
   });
+
+  useEffect(() => {
+    setInitialData({
+      name: item.name,
+      is_active: item.is_active,
+      price: item.price,
+    });
+  }, [item]);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -31,6 +39,9 @@ const Item = ({ item, updateItem }) => {
     if (values.is_active !== item.is_active) {
       createForm = { ...createForm, is_active: values.is_active };
     }
+    if (values.price !== item.price) {
+      createForm = { ...createForm, price: values.price };
+    }
     if (createForm) updateItem(createForm, item.id);
     setIsModalVisible(false);
   };
@@ -45,7 +56,11 @@ const Item = ({ item, updateItem }) => {
             className="dashboard-item-avatar-image"
           />
         </div>
-        <div className="dashboard-item-name">{item?.name}</div>
+        <Badge
+          className="dashboard-item-name"
+          status={item.is_active ? 'success' : 'error'}
+          text={item.name}
+        />
         <div className="dashboard-item-price">
           {item?.price}
           <span>đ</span>
@@ -56,11 +71,6 @@ const Item = ({ item, updateItem }) => {
             icon={<EditFilled />}
             size="small"
             onClick={showModal}
-          />
-          <Button
-            className="dashboard-item-button"
-            icon={<DeleteFilled />}
-            size="small"
           />
         </div>
       </div>

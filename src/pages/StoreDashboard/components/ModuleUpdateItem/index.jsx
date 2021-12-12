@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Modal, Input, Select } from 'antd';
 // dataSources
@@ -12,6 +12,10 @@ const ModuleUpdateItem = ({
 }) => {
   const formRef = useRef(null);
   const [form] = Form.useForm();
+
+  useEffect(() => {
+    form.setFieldsValue(formData);
+  }, [visible, formData]);
 
   return (
     <Modal
