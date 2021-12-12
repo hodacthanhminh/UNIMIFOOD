@@ -87,6 +87,17 @@ const storeid = (state = initialState, action) => {
         totalCart: newTotal,
       };
     }
+    case actionType.STORE_ID_ORDER_CREATE_FAILED:
+    case actionType.STORE_ID_ORDER_CREATE:
+      return {
+        ...state,
+      };
+    case actionType.STORE_ID_ORDER_CREATE_SUCCESS:
+      return {
+        ...state,
+        cart: [],
+        totalCart: 0,
+      };
     default:
       return { ...state };
   }
