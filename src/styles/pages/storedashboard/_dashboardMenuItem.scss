@@ -1,0 +1,25 @@
+.dashboard-menu-item-wrapper {
+  & .ant-card-head {
+    background-color: $white-dark;
+    color: $gray-darkest;
+    font-weight: bold;
+
+    & .dashboard-menu-card-button.ant-btn {
+      margin-left: 8px;
+      border-color: transparent;
+      background-color: transparent;
+
+      &:hover,
+      &:focus {
+        color: $primary-color;
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+  }
+
+  &-inner {
+    display: grid;
+    grid-row-gap: 8px;
+  }
+}

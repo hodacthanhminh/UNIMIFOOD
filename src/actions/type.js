@@ -34,3 +34,60 @@ export const STORE_ID_LOAD_SUCCESS = 'store_id/load_store_success';
 export const STORE_ID_LOAD_FAILED = 'store_id/load_store_fail';
 export const STORE_ID_ADD_CART = 'store_id/add_cart';
 export const STORE_ID_REMOVE_CART = 'store_id/remove_cart';
+
+// role
+export const ROLE_LOAD_EMPLOYEE = 'role/load_employee';
+export const ROLE_LOAD_CUSTOMER = 'role/load_customer';
+export const ROLE_CLEAR_ALL = 'role/clear_all';
+
+// employee
+export const EMPLOYEE_LOAD_PROFILE = 'role_emplyee/load_profile';
+export const EMPLOYEE_LOAD_PROFILE_FAILED =
+  'role_emplyee/load_profile_fail';
+export const EMPLOYEE_LOAD_PROFILE_SUCCESS =
+  'role_emplyee/load_profile_success';
+export const EMPLOYEE_CREATE_STORE_FAILED =
+  'role_emplyee/create_store_fail';
+export const EMPLOYEE_CREATE_STORE_SUCCESS =
+  'role_employee/creat_store_success';
+
+// store control
+export const STORE_CONTROL_LOAD_STORE = 'store_control/load_store';
+export const STORE_CONTROL_LOAD_STORE_SUCCESS =
+  'store_control/load_store_success';
+export const STORE_CONTROL_LOAD_STORE_FAILED =
+  'store_control/load_store_fail';
+export const STORE_CONTROL_LOAD_MENU = 'store_control/load_menu';
+export const STORE_CONTROL_LOAD_MENU_SUCCESS =
+  'store_control/load_menu_success';
+export const STORE_CONTROL_LOAD_MENU_FAILED =
+  'store_control/load_menu_fail';
+export const STORE_CONTROL_LOAD_ORDER = 'store_control/load_order';
+export const STORE_CONTROL_LOAD_ORDER_SUCCESS =
+  'store_control/load_order_success';
+export const STORE_CONTROL_LOAD_ORDER_FAILED =
+  'store_control/load_order_fail';
+export const STORE_CONTROL_UPDATE_STORE =
+  'store_control/update_store';
+export const STORE_CONTROL_UPDATE_STORE_SUCCESS =
+  'store_control/update_store_success';
+export const STORE_CONTROL_UPDATE_STORE_FAILED =
+  'store_control/update_store_fail';
+export const STORE_CONTROLL_CLEAR_ALL = 'store_control/clear_all';
+export const STORE_CONTROL_CREATE_MENU_FAILED =
+  'store_control/create_menu_fail';
+export const STORE_CONTROL_CREATE_MENU_SUCCESS =
+  'store_control/create_menu_success';
+export const STORE_CONTROL_CREATE_MENU = 'store_control/create_menu';
+export const STORE_CONTROL_UPDATE_MENU_FAILED =
+  'store_control/update_menu_fail';
+export const STORE_CONTROL_UPDATE_MENU_SUCCESS =
+  'store_control/update_menu_success';
+export const STORE_CONTROL_UPDATE_MENU = 'store_control/update_menu';
+
+// store_control_item
+export const STORE_CONTROL_UPDATE_ITEM_FAILED =
+  'store_control/update_item_fail';
+export const STORE_CONTROL_UPDATE_ITEM_SUCCESS =
+  'store_control/update_item_success';
+export const STORE_CONTROL_UPDATE_ITEM = 'store_control/update_item';

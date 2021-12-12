@@ -1,10 +1,15 @@
 import * as type from './type';
+import { loadRole, clearRole } from './role';
+import { ClearStoreControl } from './storecontrol';
 import accountApi from '../api/accountApi';
 
-export const Logout = () => (dispatch) =>
+export const Logout = () => (dispatch) => {
   dispatch({
     type: type.ACCOUNT_LOGOUT,
   });
+  dispatch(clearRole);
+  dispatch(ClearStoreControl);
+};
 
 export const LoadUser = () => async (dispatch) => {
   try {
@@ -19,6 +24,12 @@ export const LoadUser = () => async (dispatch) => {
         type: type.ACCOUNT_LOAD_PROFILE_SUCCESS,
         payload: res.data,
       });
+      dispatch(
+        loadRole(
+          res.data.user.account_role,
+          res.data.user.account_role_info,
+        ),
+      );
     }
   } catch (error) {
     dispatch({ type: type.ACCOUNT_AUTHENTICATION_FAILED });
@@ -69,7 +80,6 @@ export const Register = (formData) => async (dispatch) => {
 
 export const UpdateAccount = (formData, id) => async (dispatch) => {
   try {
-    console.log(formData, id);
     const res = await accountApi.accountUpdate(formData, id);
     if (res.status === 'Error') {
       dispatch({

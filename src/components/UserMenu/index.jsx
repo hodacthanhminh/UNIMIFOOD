@@ -11,17 +11,47 @@ const customerMenu = (LogoutAction) => {
   };
   return (
     <Menu className="customer-dropdown-menu">
-      <Menu.Item>
+      <Menu.Item key="1">
         <Link to="/user/history">
           <div className="dropdown-item">Lịch sử đơn hàng</div>
         </Link>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="2">
         <Link to="/account/profile">
           <div className="dropdown-item">Thông tin cá nhân</div>
         </Link>
       </Menu.Item>
-      <Menu.Item>
+      <Menu.Item key="3">
+        <div
+          className="dropdown-item"
+          onClick={handleLogout}
+          role="menuitem"
+          tabIndex="-1"
+        >
+          Đăng xuất
+        </div>
+      </Menu.Item>
+    </Menu>
+  );
+};
+
+const employeeMenu = (LogoutAction) => {
+  const handleLogout = () => {
+    LogoutAction();
+  };
+  return (
+    <Menu className="customer-dropdown-menu">
+      <Menu.Item key="1">
+        <Link to="/employee">
+          <div className="dropdown-item">Quản lý cửa hàng</div>
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <Link to="/account/profile">
+          <div className="dropdown-item">Thông tin cá nhân</div>
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="3">
         <div
           className="dropdown-item"
           onClick={handleLogout}
@@ -59,7 +89,11 @@ const UserMenu = ({ LogoutAction, user, isLoading }) => {
       >
         <Dropdown
           className="account-dropdown-menu"
-          overlay={customerMenu(LogoutAction)}
+          overlay={
+            user.account_role === 'customer'
+              ? customerMenu(LogoutAction)
+              : employeeMenu(LogoutAction)
+          }
         >
           <div className="dropdown-toggle" id="user-dropdown">
             <div className="image">
@@ -81,6 +115,7 @@ UserMenu.propTypes = {
   user: PropTypes.shape({
     first_name: PropTypes.string,
     avatar: PropTypes.string,
+    account_role: PropTypes.string,
   }),
   isLoading: PropTypes.bool.isRequired,
 };

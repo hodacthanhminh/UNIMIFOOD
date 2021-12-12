@@ -1,0 +1,85 @@
+.store-workspace {
+  &-wrapper {
+    overflow: hidden;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    &-inner {
+      display: grid;
+      color: $gray-darkest;
+    }
+  }
+
+  &-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+
+    &-wrapper {
+      grid-area: ava;
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
+  &-name {
+    grid-area: name;
+    font-size: 1rem;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &-description {
+    grid-area: des;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &-paragraph {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media only screen and (min-width: 810px) {
+  .store-workspace {
+    &-wrapper {
+      padding: 12px;
+
+      &-inner {
+        grid-template:
+          "ava name tag" 50px
+          "ava des ." 150px
+          / 200px 1fr 80px;
+        grid-column-gap: 20px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 809px) {
+  .store-workspace {
+    &-wrapper {
+      padding: 8px;
+
+      &-inner {
+        grid-template:
+          "ava ava" 2fr
+          "name name" 30px
+          "des des" 80px
+          "tag ."
+          / 1fr 1fr;
+      }
+    }
+  }
+}

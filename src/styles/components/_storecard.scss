@@ -11,7 +11,10 @@
 
   & .store-card-wrapper-inner {
     display: grid;
+    width: 100%;
     grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    box-sizing: border-box;
 
     & .store-card-image-wrapper {
       & .store-card-image {
@@ -21,31 +24,39 @@
       }
     }
 
-    & .store-card-content {
+    & .store-card-content-wrapper {
+      box-sizing: border-box;
       padding: 8px;
       border: 1px solid $gray;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
 
-      & .store-card-divider {
-        background-color: $white-dark;
-      }
+      &-inner {
+        box-sizing: border-box;
 
-      & .store-card-name {
-        font-size: 0.9rem;
-        font-weight: 600;
-        margin: 0;
-        color: $gray-darkest;
-      }
+        & .store-card-divider {
+          background-color: $white-dark;
+        }
 
-      & .store-card-address {
-        text-align: start;
-        width: 90%;
-        color: $gray-darker;
-        font-size: 0.7rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+        & .store-card-name {
+          font-size: 0.9rem;
+          font-weight: 600;
+          margin: 0;
+          color: $gray-darkest;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+
+        & .store-card-address {
+          text-align: start;
+          min-height: 17px;
+          color: $gray-darker;
+          font-size: 0.7rem;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
       }
     }
   }
@@ -63,6 +74,10 @@
       }
     }
   }
+
+  .store-card-address {
+    max-width: 250px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 979px) {
@@ -77,9 +92,13 @@
       }
     }
   }
+
+  .store-card-address {
+    max-width: 150px;
+  }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 360px) and (max-width: 600px) {
   .store-card-wrapper {
     & .store-card-wrapper-inner {
       & .store-card-divider {
@@ -89,6 +108,14 @@
       & .store-card-image-wrapper {
         height: 100px;
       }
+
+      & .store-card-content-wrapper {
+        width: 100%;
+      }
     }
+  }
+
+  .store-card-address {
+    max-width: 125px;
   }
 }

@@ -30,6 +30,7 @@ const UserProfile = ({
 
   const handleUpdateAvatar = () => {
     const data = new FormData();
+    console.log(selectedFile);
     if (selectedFile) data.append('avatar', selectedFile);
     updateAccount(data, user.id);
   };
